@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-void main() =>
-    runApp(MaterialApp(
+void main() => runApp(MaterialApp(
       home: Home(),
     ));
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  int deploymentValue = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +71,7 @@ class Home extends StatelessWidget {
               height: 24.0,
             ),
             Text(
-              'Current rank',
+              'Number of deployment',
               style: TextStyle(
                 color: Colors.white70,
                 fontSize: 16.0,
@@ -76,7 +83,7 @@ class Home extends StatelessWidget {
               height: 8.0,
             ),
             Text(
-              'Captain',
+              '$deploymentValue',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 28.0,
@@ -131,16 +138,20 @@ class Home extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(height: 40.0,),
+            SizedBox(
+              height: 40.0,
+            ),
             Center(
               child: RaisedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    deploymentValue += 1;
+                  });
+                },
                 color: Colors.amber[400],
                 textColor: Colors.black,
-                label: Text('Recruite'),
-                icon: Icon(
-                    Icons.add
-                ),
+                label: Text('Add deployment'),
+                icon: Icon(Icons.add),
               ),
             ),
           ],
